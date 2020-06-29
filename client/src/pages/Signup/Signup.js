@@ -6,9 +6,6 @@ import "../Signup/style.css";
 
 function Signup() {
 
-  shoot() {
-    alert("Great Shot!");
-  }
 
 
 
@@ -47,7 +44,7 @@ function Signup() {
             SIGN UP
           </button>
         </form>
-        <p class="account">Already have an account?<a href="#" onClick={this.shoot}>Login </a>.</p>
+        <p class="account">Already have an account?<a href="#">Login </a>.</p>
       </div>
       </div>
 
