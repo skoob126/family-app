@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link, useParams} from "react-router-dom"
 import Login from "../Login";
 import "../Signup/style.css";
 
@@ -44,7 +45,7 @@ function Signup() {
             SIGN UP
           </button>
         </form>
-        <p class="account">Already have an account?<a href="#">Login </a>.</p>
+        <p class="account">Already have an account?<Link to="/login">Login </Link>.</p>
       </div>
       </div>
 
