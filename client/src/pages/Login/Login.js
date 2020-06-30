@@ -28,14 +28,17 @@ function Login() {
             <a href="#" class="forgetPass">
             
               Forgot password?
-            </a>
+
+           </a>
+
           </div>
 
           <Link to="/dashboard"><button type="loginBttn" class="btn btn-primary btn-lg btn-block" >
           LOGIN
           </button></Link>
         </form>
-      
+
+
     </div>
     </div>
 
