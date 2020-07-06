@@ -1,12 +1,10 @@
 import React from "react";
 
 
-function DashCard() {
+function Card() {
 
     return (
 
-
-        
         <div class="col-xl-4 col-lg-4 mb-4">
        <div class="card">
   <div class="card-header">
@@ -28,10 +26,7 @@ function DashCard() {
 </div>
 
 
-
-
-   
     )
 }
 
-export default DashCard;
+export default Card;
