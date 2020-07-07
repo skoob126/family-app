@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import {Link, useParams} from "react-router-dom"
-import Login from "../Login";
+import React from 'react';
+import {Link } from "react-router-dom"
 import "../Signup/style.css";
 
 
