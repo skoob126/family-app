@@ -1,51 +1,46 @@
 import React from 'react';
+import "../Account/style.css";
 
 
 
 function Account() {
-  
-    return(
 
-<div className="container">
-    <div className="row">
-        <div className="col-xs-12 col-sm-6 col-md-6">
-            <div className="well well-sm">
-                <div className="row">
-                    <div className="col-sm-6 col-md-4">
-                        <img src="http://placehold.it/380x500" alt="" className="img-rounded img-responsive" />
-                    </div>
-                    <div className="col-sm-6 col-md-8">
-                        <h4>
-                            Bhaumik Patel</h4>
-                        <small><cite title="San Francisco, USA">San Francisco, USA <i className="glyphicon glyphicon-map-marker">
-                        </i></cite></small>
-                        <p>
-                            <i className="glyphicon glyphicon-envelope"></i>email@example.com
-                            <br />
-                            <i className="glyphicon glyphicon-globe"></i><a href="http://www.jquery2dotnet.com">www.jquery2dotnet.com</a>
-                            <br />
-                            <i className="glyphicon glyphicon-gift"></i>June 02, 1988</p>
-                       
-                        <div className="btn-group">
-                            <button type="button" className="btn btn-primary">
-                                Social</button>
-                            <button type="button" className="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                <span className="caret"></span><span className="sr-only">Social</span>
-                            </button>
-                            <ul className="dropdown-menu" role="menu">
-                                <li><a href="#">Twitter</a></li>
-                                <li><a href="https://plus.google.com/+Jquery2dotnet/posts">Google +</a></li>
-                                <li><a href="https://www.facebook.com/jquery2dotnet">Facebook</a></li>
-                                <li className="divider"></li>
-                                <li><a href="#">Github</a></li>
-                            </ul>
+    return (
+
+        <div className="container">
+            <div class="card-body tab-content">
+                <div class="tab-pane active" id="profile">
+                    <h6>YOUR PROFILE INFORMATION</h6>
+                    <hr />
+                    <form>
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" class="form-control" id="fullName" aria-describedby="fullNameHelp" placeholder="Enter your fullname" value="Kenneth Valdez" />
+                            <small id="fullNameHelp" class="form-text text-muted">Your name may appear around here where you are mentioned. You can change or remove it at any time.</small>
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <label for="bio">Your Bio</label>
+                            <textarea class="form-control autosize" id="bio" placeholder="Write something about you">A front-end developer that focus more on user interface design, a web interface wizard, a connector of awesomeness.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="url">URL</label>
+                            <input type="text" class="form-control" id="url" placeholder="Enter your website address" value="http://benije.ke/pozzivkij" />
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Location</label>
+                            <input type="text" class="form-control" id="location" placeholder="Enter your location" value="Bay Area, San Francisco, CA" />
+                        </div>
+                        <div class="form-group small text-muted">
+                            All of the fields on this page are optional and can be deleted at any time, and by filling them out, you're giving us consent to share this data wherever your user profile appears.
+                  </div>
+                        <button type="button" class="btn btn-primary">Update Profile</button>
+                        <button type="reset" class="btn btn-light">Reset Changes</button>
+                    </form>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+
+
 
 
     )

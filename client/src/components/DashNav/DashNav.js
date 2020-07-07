@@ -1,40 +1,42 @@
 import React from "react";
-import {Link } from "react-router-dom";
-
+import { Link } from "react-router-dom";
+import "../DashNav/style.css";
 
 
 function DashNav() {
 
-   
+
 
 
     return (
 
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light row">
+            <div className="col-5">
+                <a className="navbar-brand" href="#">Navbar</a>
+            </div>
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+            </button>
 
-            <div className="row mx-auto ">
-                {/* <div className="col-6">
-                <a className="navbar-brand" Link to="#">Home</a>
-                </div> */}
-                <div className="col-12collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav">
-                        <li className="nav-item">
-                            <div className="nav-link" >Dashboard<span className="sr-only"></span></div>
-                        </li>
-                        <li className="nav-item">
-                            <div className="nav-link" >Members</div>
-                        </li>
-                        <li className="nav-item">
-                            <div className="nav-link">Calender</div>
-                        </li>
-                        <li className="nav-item nav-link">
-                           <Link to="/account">Account</Link> 
-                        </li>
-
-                    </ul>
-                </div>
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul className="navbar-nav col-7">
+                    
+                    <li className="nav-item">
+                        <Link className="nav-item" to="/account">Dashboard</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-item" to="/account">Members</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-item" to="/account">Calendar</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-item" to="/account">Account</Link>
+                    </li>
+                </ul>
             </div>
         </nav>
+
     )
 }
 
