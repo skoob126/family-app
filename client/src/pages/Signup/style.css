@@ -1,24 +1,8 @@
-.card{
-    width: 40%;
-    /* box-shadow:20px 20px 50px rgb(216, 216, 216);   */
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  
+.account {
+  font-size: 14px;
+  text-align: center;
 }
 
-.card-title{
-    text-align: center;
-    
-}
-
-.account{
-    font-size: 14px;
-    text-align: center;
-
-}
-
-.form-control{
-    background-color: rgb(255, 255, 255);
+.form-control {
+  background-color: rgb(255, 255, 255);
 }
