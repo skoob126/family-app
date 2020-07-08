@@ -18,7 +18,7 @@ app.use("/user",userRouter);
 
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactreadinglist");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://family-app:CHC@2019_acs@ds147233.mlab.com:47233/heroku_534cwmf8");
 // Start the API server
 app.listen(PORT, function() {
   console.log(`:get_work:  ==> API Server now listening on PORT ${PORT}!`);

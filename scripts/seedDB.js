@@ -5,7 +5,7 @@ const db = require("../models");
 
 mongoose.connect(
   process.env.MONGODB_URI ||
-  "mongodb://localhost/reactreadinglist"
+  "mongodb://family-app:CHC@2019_acs@ds147233.mlab.com:47233/heroku_534cwmf8"
 );
 
 const todoSeed = [
