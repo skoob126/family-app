@@ -26,7 +26,7 @@ const Login = props => {
         authContext.setUser(user);
         authContext.setIsAuthenticated(isAuthenticated);
         ///Take to todos page
-        props.history.push('/todos');
+        props.history.push('/todo');
       }
       else
         setMessage(message);

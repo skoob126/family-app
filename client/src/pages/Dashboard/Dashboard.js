@@ -1,110 +1,111 @@
-import React from "react";
-import Card from "react-bootstrap/Card";
-import CardGroup from "react-bootstrap/CardGroup";
-// import css from "./Dashboard"
+import React, { useState, useEffect } from "react";
+import DeleteBtn from "../../components/DeleteBtn/index";
+import Jumbotron from "../../components/Jumbotron/index";
+import API from "../../utils/API";
+import { Link } from "react-router-dom";
+import { Col, Row, Container } from "../../components/Grid/index";
+import { List, ListItem } from "../../components/List/index";
+import { Input, FormBtn } from "../../components/Form/index";
 
-function Dashboard() {
-  return (
-    <CardGroup>
-      <Card>
-        <Card.Body>
-          <Card.Title>Card title</Card.Title>
-          <Card.Text>
-            This is a wider card with supporting text below as a natural lead-in
-            to additional content. This content is a little bit longer.
-          </Card.Text>
-        </Card.Body>
-        <Card.Footer>
-          <small className="text-muted">Last updated 3 mins ago</small>
-        </Card.Footer>
-      </Card>
+function Todos() {
+  // Setting our component's initial state
+  const [todos, setTodos] = useState([])
+  const [formObject, setFormObject] = useState({})
 
-      <Card>
-        <Card.Body>
-          <Card.Title>Card title</Card.Title>
-          <Card.Text>
-            This card has supporting text below as a natural lead-in to
-            additional content.{" "}
-          </Card.Text>
-        </Card.Body>
-        <Card.Footer>
-          <small className="text-muted">Last updated 3 mins ago</small>
-        </Card.Footer>
-      </Card>
+  // Load all Todos and store them with setTodos
+  useEffect(() => {
+    loadTodos()
+  }, [])
 
-      <Card>
-        <Card.Body>
-          <Card.Title>Card title</Card.Title>
-          <Card.Text>Test</Card.Text>
-        </Card.Body>
-        <Card.Footer>
-          <small className="text-muted">Last updated 3 mins ago</small>
-        </Card.Footer>
-      </Card>
-    </CardGroup>
-  );
-}
+  // Loads all Todos and sets them to Todos
+  function loadTodos() {
+    API.getTodos()
+      .then(res => 
+        setTodos(res.data)
+      )
+      .catch(err => console.log(err));
+  };
 
-// constructing a newPost object to hand to the database
-// const newPost = {
-//     title: titleInput.val().trim(),
-//     location: locationInput.val().trim(),
-//     email: emailInput.val().trim(),
-//     body: bodyInput.val().trim(),
-//     image: uploadImageInput.val().trim(),
-//     category: categorySelect.val().trim(),
-//     userId: userId
-//   };
-//   // if we're updating a post run updatePost to update a post
-//   // otherwise run submitPost to create a whole new post
-//   if (updating) {
-//     newPost.id = postId;
-//     updatePost(newPost);
-//   } else {
-//     submitPost(newPost);
-//     postEmail(newPost);
-//   }
-// ;
+  // Deletes a Todo from the database with a given id, then reloads Todos from the db
+  function deleteTodo(id) {
+    API.deleteTodo(id)
+      .then(res => loadTodos())
+      .catch(err => console.log(err));
+  }
 
-// // submits a new post and brings user to members page upon completion
-// function submitPost(Post) {
-//   $.post("/api/posts/", Post, () => {
-//     window.location.href = "/members";
-//   });
-// }
-// // sends user an email after post is created
-// function postEmail(Post) {
-//   $.post("/api/email/", Post);
-// }
+  // Handles updating component state when the user types into the input field
+  function handleInputChange(event) {
+    const { name, value } = event.target;
+    setFormObject({...formObject, [name]: value})
+  };
 
-// // gets post data for a post if we're editing
-// function getPostData(postId) {
-//   $.get("/api/posts/" + postId).then(data => {
-//     if (data) {
-//       // if this post exists, prefill our pet post form with its data
-//       titleInput.val(data.title);
-//       bodyInput.val(data.body);
-//       emailInput.val(data.email);
-//       bodyInput.val(data.body);
-//       locationInput.val(data.location);
-//       categorySelect.val(data.category);
-//       uploadImageInput.val(data.image);
-//       // if we have a post with this id, set a flag for us to know to update the post when we hit submit
-//       updating = true;
-//     }
-//   });
-// }
-// // calling the above function
-// getPostData();
+  // When the form is submitted, use the API.saveTodo method to save the Todo data
+  // Then reload Todos from the database
+  function handleFormSubmit(event) {
+    console.log("test");
+    event.preventDefault();
+    if (formObject.title && formObject.author) {
+      API.saveTodo({
+        title: formObject.title,
+        author: formObject.author
+      })
+        .then(res => loadTodos())
+        .catch(err => console.log(err));
+    }
+  };
 
-// // update a given post, bring user to the members page where the post will be generated
-// function updatePost(post) {
-//   $.ajax({
-//     method: "PUT",
-//     url: "/api/posts",
-//     data: post
-//   }).then(() => {
-//     window.location.href = "/members";
-//   });
+    return (
+      <Container fluid>
+        <Row>
+          <Col size="md-6">
+            <Jumbotron>
+              <h1>What do I need to do?</h1>
+            </Jumbotron>
+            <form>
+              <Input
+                onChange={handleInputChange}
+                name="title"
+                placeholder="Todo (required)"
+              />
+              <Input
+                onChange={handleInputChange}
+                name="author"
+                placeholder="Author (required)"
+              />
+             
+              <FormBtn
+                disabled={!(formObject.author && formObject.title)}
+                onClick={handleFormSubmit}
+              >
+                Submit Todo
+              </FormBtn>
+            </form>
+          </Col>
+          <Col size="md-6 sm-12">
+            <Jumbotron>
+              <h1>Todos On My List</h1>
+            </Jumbotron>
+            {Todos.length ? (
+              <List>
+                {todos.map(todo => (
+                  <ListItem key={todo._id}>
+                    <Link to={"/todos/" + todo._id}>
+                      <strong>
+                        {todo.title} by {todo.author}
+                      </strong>
+                    </Link>
+                    <DeleteBtn onClick={() => deleteTodo(todo._id)} />
+                  </ListItem>
+                ))}
+              </List>
+            ) : (
+              <h3>No Results to Display</h3>
+            )}
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
 
-export default Dashboard;
+
+export default Todos;

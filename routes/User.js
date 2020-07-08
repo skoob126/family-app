@@ -50,7 +50,7 @@ userRouter.post("/login", passport.authenticate("local", { session: false }), (r
 userRouter.get("/logout", (req, res) => {
     req.logOut();
   res.clearCookie("access_token");
-  res.json({user:{username : "", email : ""}, sucess:true});
+  res.json({user:{username : "", email : ""}, success:true});
 
 });
 

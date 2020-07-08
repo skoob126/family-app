@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const userRouter = require("./routes/User");
+// const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
 // Define middleware here
@@ -12,6 +13,7 @@ if (process.env.NODE_ENV === "production") {
 }
 // Add routes, both API and view
 app.use("/user",userRouter);
+// app.use(routes);
 
 
 

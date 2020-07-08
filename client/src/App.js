@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navbar from "./components/Nav/Navbar";
 import Dashboard from "./pages/Dashboard/Dashboard";
 
+
 function App() {
   return (
     <Router>
@@ -14,7 +15,7 @@ function App() {
       <Route exact path="/" component={Home} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/signup" component={Signup} />
-      <Route exact path="/dashboard" component={Dashboard} />
+      <Route exact path="/todo" component={Dashboard} />
     </Router>
   );
 }

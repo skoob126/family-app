@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
 import AuthService from "../../Services/AuthService";
@@ -9,12 +10,16 @@ const Navbar = (props) => {
     AuthContext
   );
 
+  let history = useHistory();
+
   const onClickLogoutHandler = () => {
+      console.log("test");
     AuthService.logout().then((data) => {
+        console.log(data);
       if (data.success) {
         setUser(data.user);
         setIsAuthenticated();
-        props.history.push("");
+        history.push("/");
       }
     });
   };
@@ -27,9 +32,6 @@ const Navbar = (props) => {
             <ul class="navbar-nav mr-auto">
               <Link to="/">
                 <li className="nav-item nav-link">Home</li>
-              </Link>
-              <Link to="/dashboard">
-                <li className="nav-item nav-link">Dashboard</li>
               </Link>
               <Link to="/login">
                 <li className="nav-item nav-link">Login</li>
@@ -53,17 +55,13 @@ const Navbar = (props) => {
         <Link to="/todo">
           <li className="nav-item nav-link">Todo</li>
         </Link>
-        <Link to="/members">
-          <li className="nav-item nav-link">Members</li>
-        </Link>
-        <Link to="/account">
-          <li className="nav-item nav-link">Account</li>
-        </Link>{" "}
+        
         {console.log(user.username)}
         <button
           type="button"
           className="btn btn-link nav-item nav link"
           onClick={onClickLogoutHandler}
+        
         >
           Logout
         </button>
