@@ -4,12 +4,14 @@
   padding-right: 35px;
   padding-top: 35px;
   padding-bottom: 35px;
+  border-style: ridge;
 }
 
 .container {
-  background-image: url("https://www.nicepng.com/png/detail/900-9002809_sehs-humans-global-awareness-club-at-southeast-people.png");
+  background-image: url("https://www.telegraph.co.uk/content/dam/money/Spark/HSBC/family-generations-holding-hands.jpg");
   padding-left: 100px;
   padding-right: 100px;
   padding-top: 100px;
   padding-bottom: 200px;
+  background-size: cover;
 }
