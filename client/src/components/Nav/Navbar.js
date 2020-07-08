@@ -29,6 +29,11 @@ const Navbar = props => {
             Home
         </li>
     </Link>
+    <Link to="/dashboard">
+        <li className="nav-item nav-link">
+            Dashboard
+        </li>
+    </Link>
     <Link to="/login">
         <li className="nav-item nav-link">
            Login
