@@ -1,87 +1,86 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-// import Login from "../../pages/Login/Login";
-// import Signup from "../../pages/Signup/Signup"; 
+import { withRouter } from 'react-router';
 import AuthService from "../../Services/AuthService";
 import { AuthContext } from "../../Context/AuthContext";
 
 const Navbar = props => {
 
-    const {isAuthenticated,user,setIsAuthenticated,setUser} = useContext(AuthContext);
+    const { isAuthenticated, user, setIsAuthenticated, setUser } = useContext(AuthContext);
 
-    const onClickLogoutHandler = ()=>{
-        AuthService.logout().then(data=>{
-            if(data.success){
+    const onClickLogoutHandler = ()=> {
+        AuthService.logout().then(data => {
+            if (data.success) {
                 setUser(data.user);
-                setIsAuthenticated(false);
+                setIsAuthenticated();
+                props.history.push('');
             }
         });
     }
-   
-    const unauthenticatedNavBar = ()=>{
-        return(  
-             <>
-       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="collapse navbar-collapse" id="navbarText">
-    <ul class="navbar-nav mr-auto">
-        <Link to="/">
-        <li className="nav-item nav-link">
-            Home
-        </li>
-    </Link>
-    <Link to="/login">
-        <li className="nav-item nav-link">
-           Login
-        </li>
-    </Link>
-    <Link to="/signup">
-        <li className="nav-item nav-link">
-            Signup
-        </li>
-    </Link>
-    </ul>
-  </div>
-    </nav>
-  
-     </>
+
+    const unauthenticatedNavBar = () => {
+        return (
+            <>
+                <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                    <div className="collapse navbar-collapse" id="navbarText">
+                        <ul className="navbar-nav mr-auto">
+                            <Link to="/">
+                                <li className="nav-item nav-link">
+                                    Home
+                                </li>
+                            </Link>
+                            <Link to="/login">
+                                <li className="nav-item nav-link">
+                                    Login
+                                </li>
+                            </Link>
+                            <Link to="/signup">
+                                <li className="nav-item nav-link">
+                                    Signup
+                                </li>
+                            </Link>
+                        </ul>
+                    </div>
+                </nav>
+
+            </>
         )
     }
 
-    const authenticatedNavBar = ()=>{
-        return ( 
-        <>
-        <Link to="/">
-            <li className="nav-item nav-link">
-                Home
-            </li>
-        </Link>
+    const authenticatedNavBar = () => {
+        return (
+            <>
 
-        <Link to="/todo">
-            <li className="nav-item nav-link">
-               Todo
+                <Link to="/">
+                    <li className="nav-item nav-link">
+                        Home
             </li>
-        </Link>
-        <Link to="/members">
-            <li className="nav-item nav-link">
-                Members
-            </li>
-        </Link>
-        <Link to="/account">
-            <li className="nav-item nav-link">
-                Account
-            </li>
-        </Link>  {
-                    user.role === "admin" ? 
-                    <Link to="/admin">
-                        <li className="nav-item nav-link">
-                            Admin
-                        </li>
-                    </Link> : null
-                }  
+                </Link>
 
-        <button type="button" className="btn btn-link nav-item nav link"
-         onClick={onClickLogoutHandler}>Logout</button>
-        </>
+                <Link to="/todo">
+                    <li className="nav-item nav-link">
+                        Todo
+            </li>
+                </Link>
+                <Link to="/members">
+                    <li className="nav-item nav-link">
+                        Members
+            </li>
+                </Link>
+                <Link to="/account">
+                    <li className="nav-item nav-link">
+                        Account
+            </li>
+                </Link>   {
+                    console.log(user.username)
+
+                }
+
+               
+                    <button type="button" className="btn btn-link nav-item nav link"
+                        onClick={onClickLogoutHandler}>Logout</button>
+             
+            </>
         )
     }
     return (
@@ -89,12 +88,12 @@ const Navbar = props => {
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <Link to="/">
                 <div className="navbar-brand">
-                    InnerCirle
+                    InnerCircle
                 </div>
             </Link>
             <div className="collapse navbar-collapse" id="navbarText">
                 <ul className="navbar-nav mr-auto">
-                    { !isAuthenticated ? unauthenticatedNavBar() : authenticatedNavBar}
+                    {!isAuthenticated ? unauthenticatedNavBar() : authenticatedNavBar()}
                 </ul>
             </div>
         </nav>
@@ -102,4 +101,4 @@ const Navbar = props => {
 
 }
 
-export default Navbar;
+export default withRouter(Navbar);
