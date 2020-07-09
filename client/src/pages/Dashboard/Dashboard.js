@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import DeleteBtn from "../../components/DeleteBtn/index";
 import Jumbotron from "../../components/Jumbotron/index";
@@ -25,6 +26,9 @@ function Todos() {
       )
       .catch(err => console.log(err));
   };
+
+
+
 
   // Deletes a Todo from the database with a given id, then reloads Todos from the db
   function deleteTodo(id) {
