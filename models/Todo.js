@@ -3,11 +3,12 @@ const mongoose = require("mongoose");
 
 const TodoSchema = new mongoose.Schema({
 
-    name :{
+    title :{
         type : String,
         required: true
      
-    }
+    },
+    author: { type: String, required: true }
    
 });
 

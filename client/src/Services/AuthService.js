@@ -1,6 +1,6 @@
 export default {
     login: user => {
-        console.log(user);
+   
         return fetch('/user/login', {
             method: "post",
             body: JSON.stringify(user),
@@ -15,7 +15,7 @@ export default {
         })
     },
     signup: user => {
-        console.log(user);
+     
         return fetch('/user/register', {
             method: "post",
             body: JSON.stringify(user),
@@ -36,7 +36,7 @@ export default {
                 if (res.status !== 401)
                     return res.json().then(data => data);
                 else
-                    return { isAuthenticated: false, user: { username: "", role: "" } };
+                    return { isAuthenticated: false, user: { username: "", email: "" } };
             });
     }
 

@@ -28,8 +28,10 @@ const Login = (props) => {
         authContext.setUser(user);
         authContext.setIsAuthenticated(isAuthenticated);
         ///Take to todos page
-        props.history.push("/todos");
-      } else setMessage(message);
+        props.history.push('/todo');
+      }
+      else
+        setMessage(message);
     });
   };
 
